@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alex Sandro, QA júnior</title>
+<meta name="description" content="Alex Sandro, QA júnior em Arapiraca (AL). Testes de caracterização, pytest, GitHub Actions e regras de negócio de sistemas em uso real.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #ECEEF1;
+    --paper-2: #E2E5EA;
+    --ink: #16202B;
+    --muted: #4A5562;
+    --rule: #BCC3CC;
+    --mark: #F5D84A;
+    --code-bg: #16202B;
+    --code-ink: #DCE3EA;
+    --sans: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { background: var(--mark); text-decoration: none; }
+  a:focus-visible, summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* topo */
+  .top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-top: 1.75rem; gap: 1rem; flex-wrap: wrap;
+  }
+  .top strong { font-weight: 800; font-size: 1.125rem; letter-spacing: -0.01em; }
+  .top nav { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+  .top nav a { text-decoration: none; }
+  .top nav a:hover { text-decoration: underline; background: none; }
+
+  /* hero */
+  .hero {
+    display: grid; grid-template-columns: 1.55fr 1fr; gap: 3rem;
+    padding: 6.5rem 0 5rem; align-items: end;
+  }
+  h1 {
+    font-size: clamp(2.9rem, 8.2vw, 6.2rem);
+    line-height: 0.95; letter-spacing: -0.035em; font-weight: 800;
+  }
+  .hero-text { margin-top: 2rem; max-width: 34rem; font-size: 1.15rem; }
+  .hero-text p + p { margin-top: 0.9rem; }
+
+  /* foto */
+  .foto {
+    position: relative; width: 100%; max-width: 270px;
+    aspect-ratio: 4 / 5; background: var(--paper-2);
+    border: 1px solid var(--rule); transform: rotate(-1.2deg);
+    display: grid; place-items: center; text-align: center;
+    color: var(--muted); font-size: 0.9rem; padding: 1rem;
+  }
+  .foto img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .lado .ficha { position: relative; margin-top: -3rem; margin-left: 2.5rem; }
+
+  .ficha {
+    background: #F7F8FA;
+    border: 1.5px dashed var(--ink);
+    padding: 1.25rem 1.4rem 1.4rem;
+    transform: rotate(1.6deg);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .ficha h2 {
+    font-size: 0.95rem; font-weight: 700; margin-bottom: 0.9rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule);
+  }
+  .ficha dl { display: grid; grid-template-columns: 5.2rem 1fr; row-gap: 0.55rem; }
+  .ficha dt { color: var(--muted); }
+  .ficha dd { font-weight: 500; }
+
+  /* seções */
+  section { padding: 4.5rem 0; border-top: 1px solid var(--rule); }
+  h2.sec {
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    line-height: 1.1; letter-spacing: -0.02em; font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  /* sobre */
+  .sobre { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; }
+  .sobre .corpo { max-width: 38rem; }
+  .sobre .corpo p + p { margin-top: 1.1rem; }
+  .sobre .corpo p:nth-child(2) { padding-left: 1.4rem; border-left: 3px solid var(--mark); }
+
+  /* projetos */
+  .proj { padding: 2.75rem 0; border-top: 1px solid var(--rule); }
+  .proj:first-of-type { border-top: 0; padding-top: 0; }
+  .proj h3 { font-size: 1.6rem; line-height: 1.15; letter-spacing: -0.015em; font-weight: 700; }
+  .proj .stack { color: var(--muted); font-size: 0.92rem; margin-top: 0.3rem; }
+  .proj p { margin-top: 1rem; max-width: 34rem; }
+  .proj ul { margin: 1rem 0 0 1.1rem; max-width: 34rem; }
+  .proj li + li { margin-top: 0.4rem; }
+  .proj .link { display: inline-block; margin-top: 1.1rem; font-size: 0.95rem; }
+
+  .p-a { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+  .p-b { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: start; padding-left: 4vw; }
+  .p-b .code { order: -1; }
+  .p-c { max-width: 38rem; margin-left: auto; }
+
+  pre {
+    background: var(--code-bg); color: var(--code-ink);
+    font-family: var(--mono); font-size: 0.8rem; line-height: 1.7;
+    padding: 1.25rem 1.4rem; overflow-x: auto; border-radius: 3px;
+  }
+  .code figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.6rem; }
+
+  /* habilidades */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 3rem; }
+  .skills > div:nth-child(2) { margin-top: 2.5rem; }
+  .skills h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .skills p { color: var(--muted); font-size: 1rem; }
+
+  /* contato */
+  .contato { background: var(--paper-2); border-top: 0; }
+  .contato h2 { font-size: clamp(2rem, 5.5vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 800; max-width: 14ch; }
+  .contato p { margin-top: 1.5rem; max-width: 30rem; }
+  .contato ul { list-style: none; margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-weight: 500; }
+
+  footer { padding: 1.75rem 0 2.5rem; font-size: 0.9rem; color: var(--muted); }
+
+  /* mobile */
+  @media (max-width: 820px) {
+    .hero, .sobre, .p-a, .p-b { grid-template-columns: 1fr; gap: 2rem; }
+    .hero { padding: 3.5rem 0 3rem; }
+    .p-b { padding-left: 0; }
+    .p-b .code { order: 0; }
+    .p-c { margin-left: 0; }
+    .skills { grid-template-columns: 1fr; }
+    .skills > div:nth-child(2) { margin-top: 0; }
+    .ficha { transform: rotate(0.8deg); }
+    .lado .ficha { margin-left: 1.5rem; margin-top: -2rem; }
+    .foto { max-width: 220px; }
+    section { padding: 3.25rem 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <strong>Alex Sandro</strong>
+    <nav aria-label="Principal">
+      <a href="#projetos">Projetos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Acho o erro antes do usuário.</h1>
+      <div class="hero-text">
+        <p>Sou técnico de TI e professor de informática, e estou migrando para QA. Escrevo testes em Python, rodo tudo no GitHub Actions e documento as regras de negócio de sistemas que a escola usa de verdade.</p>
+        <p>Antes disso, atendi cliente, dei suporte e mexi em rede. Por isso sei seguir um erro até a causa e explicar sem enrolação.</p>
+      </div>
+    </div>
+
+    <div class="lado">
+      <!-- ============================================================
+           SUA FOTO: coloque o arquivo na mesma pasta deste index.html
+           e troque "foto.jpg" abaixo pelo nome do seu arquivo.
+           Dica: foto de rosto, vertical (4:5), até 500 KB.
+           ============================================================ -->
+      <figure class="foto">
+        <span>Sua foto aqui<br>(foto.jpg)</span>
+        <img src="foto.jpg" alt="Alex Sandro" onerror="this.style.display='none'">
+      </figure>
+
+      <aside class="ficha" aria-label="Resumo">
+        <h2>Ficha rápida</h2>
+        <dl>
+          <dt>Quem</dt><dd>Alex Sandro</dd>
+          <dt>Onde</dt><dd>Arapiraca, AL</dd>
+          <dt>Procuro</dt><dd>QA júnior, remoto ou híbrido</dd>
+          <dt>Vim de</dt><dd>Suporte de TI, sala de aula, atendimento</dd>
+          <dt>Estudando</dt><dd>ISTQB CTFL 4.0</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="wrap sobre">
+    <h2 class="sec">Como cheguei aqui</h2>
+    <div class="corpo">
+      <p>Trabalho com TI e dou aula de informática. Aprendi Python e testes na prática, errando e corrigindo.</p>
+      <p>Refatorei código legado sem mudar o comportamento, protegido por testes de caracterização. Montei um pipeline no GitHub Actions. E escrevi as regras de um sistema de agendamento que a escola usa todo dia.</p>
+      <p>Tenho certificações Cisco em suporte e redes. Hoje estudo para o ISTQB CTFL 4.0 e avanço em teste de API e automação web.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <h2 class="sec">O que já fiz</h2>
+
+    <article class="proj p-a">
+      <div>
+        <h3>Gilded Rose: refatoração com testes</h3>
+        <p class="stack">Python, pytest, Git</p>
+        <p>Peguei um código legado confuso e refatorei sem alterar o que ele faz. Primeiro escrevi testes de caracterização com pytest para travar o comportamento atual. Só depois mexi na regra e implementei o item <em>Conjured</em>.</p>
+        <p>Foi trabalho em dupla, com branches separadas e code review em Pull Request.</p>
+        <a class="link" href="https://github.com/alexsandro-coder" target="_blank" rel="noopener">Ver no GitHub</a>
+      </div>
+      <figure class="code">
+<pre><code># teste de caracterização
+def test_aged_brie_aumenta_qualidade():
+    item = Item("Aged Brie", sell_in=2, quality=0)
+    gilded = GildedRose([item])
+    gilded.update_quality()
+    assert item.quality == 1</code></pre>
+        <figcaption>Um dos testes que escrevi antes de refatorar.</figcaption>
+      </figure>
+    </article>
+
+    <article class="proj p-b">
+      <div>
+        <h3>Pipeline de testes no GitHub Actions</h3>
+        <p class="stack">GitHub Actions, pytest</p>
+        <p>Toda vez que alguém envia código ou abre um Pull Request, a suíte de testes roda sozinha. Se algo quebra, o código não entra na branch principal.</p>
+        <a class="link" href="https://github.com/alexsandro-coder" target="_blank" rel="noopener">Ver no GitHub</a>
+      </div>
+      <figure class="code">
+<pre><code>name: QA Integration Suite
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - run: pytest --verbose</code></pre>
+        <figcaption>Workflow que roda a cada push.</figcaption>
+      </figure>
+    </article>
+
+    <article class="proj p-c">
+      <h3>Sistema de agendamento da escola</h3>
+      <p class="stack">Em uso real</p>
+      <p>Professores reservam equipamentos e horários por ele. Eu documentei as regras e montei os casos de teste:</p>
+      <ul>
+        <li>bloqueia reserva em horário que já está ocupado;</li>
+        <li>exige antecedência mínima e respeita a máxima;</li>
+        <li>limita a 3 aulas consecutivas por professor;</li>
+        <li>envia lembrete por e-mail.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="habilidades">
+  <div class="wrap">
+    <h2 class="sec">O que eu uso</h2>
+    <div class="skills">
+      <div>
+        <h3>No dia a dia</h3>
+        <p>Teste funcional, exploratório e de regressão. Teste de caracterização em código legado. Casos de teste e bug report. Python, pytest, Git, GitHub, GitHub Actions, SQL, Pandas e terminal Linux.</p>
+      </div>
+      <div>
+        <h3>Aprendendo agora</h3>
+        <p>Teste de API com Postman. Automação web com Playwright e Selenium. Scrum e Kanban. Base para o ISTQB CTFL 4.0: princípios de teste, partição de equivalência e análise de valor limite.</p>
+      </div>
+      <div>
+        <h3>Vem junto</h3>
+        <p>Leitura de regra de negócio, busca da causa raiz, comunicação direta com quem desenvolve e inglês técnico para leitura.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="contato">
+  <div class="wrap">
+    <h2>Tem vaga de QA júnior? Me chama.</h2>
+    <p>Posso trabalhar remoto ou híbrido. Se você quer alguém que pega o erro antes de ir pro ar, vamos conversar.</p>
+    <ul>
+      <li><a href="https://wa.me/5582996728925?text=Ol%C3%A1%20Alex%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noopener">WhatsApp (82) 99672-8925</a></li>
+      <li><a href="mailto:alexsandro.oficial@gmail.com">alexsandro.oficial@gmail.com</a></li>
+      <li><a href="https://github.com/alexsandro-coder" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alexsandrocoder" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Arapiraca, Alagoas · 2026</div>
+</footer>
+
+</body>
+</html>
